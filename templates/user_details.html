@@ -1,0 +1,52 @@
+<h1>👥 All Customers</h1>
+
+<!-- 🔍 SEARCH FORM -->
+<form method="get" action="/users">
+Search by Name:
+<input name="name">
+
+Search by Box Number:
+<input name="box">
+
+<button type="submit">Search</button>
+</form>
+
+<br>
+
+<!-- 📌 DEFAULTER FILTERS -->
+<b>Show Defaulters:</b>
+<a href="/users?days=30">1 Month</a> 
+<a href="/users?days=60">2 Months</a> |
+<a href="/users?days=90">3 Months</a>
+
+<br><br>
+
+<table border="1" cellpadding="10">
+<tr>
+<th>Name</th>
+<th>Box</th>
+<th>Mobile</th>
+<th>Amount</th>
+<th>Due Date</th>
+<th>Actions</th>
+</tr>
+
+{% for u in users %}
+<tr>
+<td>{{u.name}}</td>
+<td>{{u.box_no}}</td>
+<td>{{u.mobile}}</td>
+<td>{{u.amount}}</td>
+<td>{{u.due_date}}</td>
+<td>
+<a href="/edit/{{u.id}}">✏️ Edit</a> |
+<a href="/delete/{{u.id}}">🗑 Delete</a> |
+<a href="/paid/{{u.id}}">💰 Paid</a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+<br>
+<a href="/dashboard">⬅ Back to Dashboard</a>

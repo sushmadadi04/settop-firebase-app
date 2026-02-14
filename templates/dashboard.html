@@ -1,0 +1,17 @@
+<h1>📺 SetTop Manager Dashboard</h1>
+
+<br>
+
+<a href="/create">➕ Create New User</a><br><br>
+
+<a href="/users">👥 View All Users</a><br><br>
+
+<hr>
+
+<h3>⚠️ Due Today / Overdue Customers</h3>
+
+{% for d in dues %}
+<p>
+<b>{{d.name}}</b> — Box: {{d.box_no}} — Due: {{d.due_date}}
+</p>
+{% endfor %}
