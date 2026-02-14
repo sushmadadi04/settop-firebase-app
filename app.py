@@ -7,8 +7,18 @@ app = Flask(__name__)
 app.secret_key = "settop_secret"
 
 # FIREBASE CONNECT
-cred = credentials.Certificate("firebase_key.json")
+import os
+import json
+import firebase_admin
+from firebase_admin import credentials, firestore
+
+# Load Firebase key from environment variable
+firebase_key = os.environ.get("FIREBASE_KEY")
+firebase_dict = json.loads(firebase_key)
+
+cred = credentials.Certificate(firebase_dict)
 firebase_admin.initialize_app(cred)
+
 db = firestore.client()
 users_ref = db.collection("users")
 
